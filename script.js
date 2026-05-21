@@ -402,8 +402,10 @@ function drawLines() {
 
 function handleCanvasClick(e) {
     const rect = canvas.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const x = (e.clientX - rect.left) * scaleX;
+    const y = (e.clientY - rect.top) * scaleY;
     
     const level = levels[currentLevel];
     const dotIndex = findClickedDot(x, y, level);
@@ -424,13 +426,14 @@ function handleCanvasClick(e) {
 }
 
 function findClickedDot(x, y, level) {
+    const clickRadius = 30;
     for (let i = 0; i < level.dots.length; i++) {
         const dot = level.dots[i];
         const dotX = padding + dot.col * cellSize + cellSize / 2;
         const dotY = padding + dot.row * cellSize + cellSize / 2;
         
         const distance = Math.sqrt(Math.pow(x - dotX, 2) + Math.pow(y - dotY, 2));
-        if (distance <= 20) {
+        if (distance <= clickRadius) {
             return i;
         }
     }

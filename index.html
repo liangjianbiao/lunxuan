@@ -3,442 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL遍历工具</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 100%;
-            padding: 40px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2rem;
-        }
-
-        .url-list {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-
-        .url-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            margin: 8px 0;
-            background: white;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            font-size: 0.9rem;
-            color: #333;
-        }
-
-        .url-item i {
-            margin-right: 12px;
-            color: #667eea;
-        }
-
-        .controls {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 50px;
-            font-size: 1.1rem;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
-        }
-
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .btn.stop {
-            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
-            box-shadow: 0 5px 20px rgba(231, 76, 60, 0.4);
-        }
-
-        .btn.stop:hover:not(:disabled) {
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.5);
-        }
-
-        .progress-section {
-            display: none;
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-        }
-
-        .progress-section.active {
-            display: block;
-        }
-
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .progress-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .progress-stats {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 20px;
-            background: #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            border-radius: 10px;
-            transition: width 0.3s ease;
-        }
-
-        .log-container {
-            background: #2c3e50;
-            color: #ecf0f1;
-            border-radius: 10px;
-            padding: 15px;
-            height: 250px;
-            overflow-y: auto;
-            font-family: 'Courier New', monospace;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .log-container::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .log-container::-webkit-scrollbar-track {
-            background: #34495e;
-            border-radius: 3px;
-        }
-
-        .log-container::-webkit-scrollbar-thumb {
-            background: #764ba2;
-            border-radius: 3px;
-        }
-
-        .log-success {
-            color: #2ecc71;
-        }
-
-        .log-error {
-            color: #e74c3c;
-        }
-
-        .log-info {
-            color: #3498db;
-        }
-
-        .log-warning {
-            color: #f39c12;
-        }
-
-        .status-dot {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: #2ecc71;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-
-        .config-section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 25px;
-        }
-
-        .config-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 15px;
-        }
-
-        .config-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin: 10px 0;
-        }
-
-        .config-label {
-            color: #555;
-            font-size: 0.9rem;
-        }
-
-        .config-input {
-            width: 80px;
-            padding: 8px 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.9rem;
-            transition: border-color 0.3s;
-        }
-
-        .config-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-    </style>
+    <title>心灵驿站 - 陪伴你成长</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cdc3263b8b8f94e1d69ded1cf092419";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
 </head>
 <body>
-    <div class="container">
-        <h1>🔄 URL遍历工具</h1>
-
-        <div style="background: #fff3cd; border: 1px solid #ffc107; border-radius: 10px; padding: 15px; margin-bottom: 20px; font-size: 0.9rem; color: #856404;">
-            ⚠️ <strong>提示：</strong>请允许浏览器弹出窗口，否则新标签页可能无法打开。首次点击"开始遍历"时，浏览器可能会提示是否允许弹出窗口，请选择"允许"。
-        </div>
-
-        <div class="config-section">
-            <div class="config-title">⚙️ 配置参数</div>
-            <div class="config-item">
-                <span class="config-label">循环次数:</span>
-                <input type="number" id="loopCount" class="config-input" value="10" min="1" max="1000">
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>心灵驿站</span>
             </div>
-            <div class="config-item">
-                <span class="config-label">停留时间(秒):</span>
-                <input type="number" id="stayTime" class="config-input" value="4" min="1" max="60">
-            </div>
-        </div>
-
-        <div class="url-list">
-            <div class="url-item">
-                <i>🏠</i> https://www.kanjl.com/
-            </div>
-            <div class="url-item">
-                <i>🧪</i> https://www.kanjl.com/tests
-            </div>
-            <div class="url-item">
-                <i>🌳</i> https://www.kanjl.com/treehole
-            </div>
-            <div class="url-item">
-                <i>📰</i> https://www.kanjl.com/articles
-            </div>
-            <div class="url-item">
-                <i>✨</i> https://www.kanjl.com/fashion
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="test.html"><i class="fas fa-flask"></i> 心理测试</a></li>
+                <li><a href="news.html"><i class="fas fa-newspaper"></i> 资讯</a></li>
+                <li><a href="treehole.html"><i class="fas fa-tree"></i> 情绪树洞</a></li>
+                <li><a href="games.html"><i class="fas fa-gamepad"></i> 小游戏</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
+    </nav>
 
-        <div class="controls">
-            <button id="startBtn" class="btn">
-                ▶️ 开始遍历
-            </button>
-            <button id="stopBtn" class="btn stop" style="display: none;">
-                ⏹️ 停止遍历
-            </button>
-        </div>
-
-        <div id="progressSection" class="progress-section">
-            <div class="progress-header">
-                <span class="progress-title">
-                    <span class="status-dot"></span> 遍历进行中
-                </span>
-                <span class="progress-stats" id="progressStats">
-                    循环: 0/0 | URL: 0/5
-                </span>
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>探索内心世界</h1>
+            <p>在这里，找到属于你的心灵栖息地</p>
+            <div class="hero-buttons">
+                <a href="test.html" class="btn btn-primary">开始测试</a>
+                <a href="treehole.html" class="btn btn-secondary">倾诉心声</a>
             </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
-            </div>
-            <div class="log-container" id="logContainer"></div>
         </div>
-    </div>
+        <div class="hero-visual">
+            <div class="floating-elements">
+                <div class="float-item float-1"><i class="fas fa-smile"></i></div>
+                <div class="float-item float-2"><i class="fas fa-heart"></i></div>
+                <div class="float-item float-3"><i class="fas fa-star"></i></div>
+                <div class="float-item float-4"><i class="fas fa-moon"></i></div>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        const urls = [
-            { name: '首页', url: 'https://www.kanjl.com/' },
-            { name: '心理测试', url: 'https://www.kanjl.com/tests' },
-            { name: '情绪树洞', url: 'https://www.kanjl.com/treehole' },
-            { name: '资讯', url: 'https://www.kanjl.com/articles' },
-            { name: '时尚', url: 'https://www.kanjl.com/fashion' }
-        ];
+    <!-- 功能介绍 -->
+    <section class="features">
+        <div class="container">
+            <h2>我们提供</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon test-icon"><i class="fas fa-flask"></i></div>
+                    <h3>趣味心理测试</h3>
+                    <p>探索你的性格、情感和潜能</p>
+                    <a href="test.html">开始测试 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon news-icon"><i class="fas fa-newspaper"></i></div>
+                    <h3>心理资讯</h3>
+                    <p>获取最新的心理健康知识</p>
+                    <a href="news.html">了解更多 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon tree-icon"><i class="fas fa-tree"></i></div>
+                    <h3>情绪树洞</h3>
+                    <p>倾诉心事，温暖相伴</p>
+                    <a href="treehole.html">进入树洞 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon game-icon"><i class="fas fa-gamepad"></i></div>
+                    <h3>益智小游戏</h3>
+                    <p>放松心情，锻炼大脑</p>
+                    <a href="games.html">开始游戏 <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon consult-icon"><i class="fas fa-comments"></i></div>
+                    <h3>在线咨询</h3>
+                    <p>专业心理咨询服务</p>
+                    <a href="#" onclick="openConsultation()">立即咨询 <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        let isRunning = false;
-        let currentLoop = 0;
-        let totalLoops = 10;
-        let stayTime = 5;
+    <!-- 热门测试 -->
+    <section class="popular-tests">
+        <div class="container">
+            <h2>热门心理测试</h2>
+            <div class="tests-grid">
+                <div class="test-card" onclick="location.href='test.html#mbti'">
+                    <div class="test-image mbti-bg"></div>
+                    <div class="test-content">
+                        <span class="test-tag">性格测试</span>
+                        <h3>MBTI性格测试</h3>
+                        <p>探索你的人格类型</p>
+                        <div class="test-stats">
+                            <span><i class="fas fa-users"></i> 12,345人已测</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-card" onclick="location.href='test.html#love'">
+                    <div class="test-image love-bg"></div>
+                    <div class="test-content">
+                        <span class="test-tag">情感测试</span>
+                        <h3>爱情匹配度测试</h3>
+                        <p>测试你的恋爱风格</p>
+                        <div class="test-stats">
+                            <span><i class="fas fa-users"></i> 8,765人已测</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="test-card" onclick="location.href='test.html#career'">
+                    <div class="test-image career-bg"></div>
+                    <div class="test-content">
+                        <span class="test-tag">职业测试</span>
+                        <h3>职业性格测试</h3>
+                        <p>找到适合你的职业</p>
+                        <div class="test-stats">
+                            <span><i class="fas fa-users"></i> 6,543人已测</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const startBtn = document.getElementById('startBtn');
-        const stopBtn = document.getElementById('stopBtn');
-        const progressSection = document.getElementById('progressSection');
-        const progressStats = document.getElementById('progressStats');
-        const progressFill = document.getElementById('progressFill');
-        const logContainer = document.getElementById('logContainer');
-        const loopCountInput = document.getElementById('loopCount');
-        const stayTimeInput = document.getElementById('stayTime');
+    <!-- 最新资讯 -->
+    <section class="latest-news">
+        <div class="container">
+            <h2>最新资讯</h2>
+            <div class="news-grid">
+                <div class="news-card" onclick="location.href='news.html#article1'">
+                    <div class="news-image news1-bg"></div>
+                    <div class="news-content">
+                        <span class="news-tag">心理健康</span>
+                        <h3>如何缓解职场压力</h3>
+                        <p>职场压力已成为现代人普遍面临的问题...</p>
+                        <span class="news-date">2026-06-23</span>
+                    </div>
+                </div>
+                <div class="news-card" onclick="location.href='news.html#article2'">
+                    <div class="news-image news2-bg"></div>
+                    <div class="news-content">
+                        <span class="news-tag">心理学</span>
+                        <h3>正念冥想的科学益处</h3>
+                        <p>越来越多的研究证明冥想对身心健康有益...</p>
+                        <span class="news-date">2026-06-22</span>
+                    </div>
+                </div>
+                <div class="news-card" onclick="location.href='news.html#article3'">
+                    <div class="news-image news3-bg"></div>
+                    <div class="news-content">
+                        <span class="news-tag">情感关系</span>
+                        <h3>建立健康的人际关系</h3>
+                        <p>良好的人际关系是幸福生活的基石...</p>
+                        <span class="news-date">2026-06-21</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function log(message, type = 'info') {
-            const timestamp = new Date().toLocaleTimeString();
-            const logClass = `log-${type}`;
-            const logItem = document.createElement('div');
-            logItem.innerHTML = `<span>[${timestamp}]</span> ${message}`;
-            logItem.className = logClass;
-            logContainer.appendChild(logItem);
-            logContainer.scrollTop = logContainer.scrollHeight;
-        }
+    <!-- 情绪树洞预览 -->
+    <section class="treehole-preview">
+        <div class="container">
+            <h2>最近心事</h2>
+            <div class="treehole-cards">
+                <div class="treehole-card">
+                    <div class="treehole-avatar">🌙</div>
+                    <div class="treehole-content">
+                        <p>"最近工作压力好大，感觉喘不过气来..."</p>
+                        <div class="treehole-meta">
+                            <span>匿名用户</span>
+                            <span>2小时前</span>
+                            <span><i class="fas fa-heart"></i> 12</span>
+                            <span><i class="fas fa-comment"></i> 3</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="treehole-card">
+                    <div class="treehole-avatar">⭐</div>
+                    <div class="treehole-content">
+                        <p>"今天和家人吵架了，现在很后悔..."</p>
+                        <div class="treehole-meta">
+                            <span>匿名用户</span>
+                            <span>5小时前</span>
+                            <span><i class="fas fa-heart"></i> 28</span>
+                            <span><i class="fas fa-comment"></i> 8</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="treehole.html" class="view-more">查看更多心事 <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
 
-        function updateProgress() {
-            const totalSteps = totalLoops * urls.length;
-            const currentStep = (currentLoop - 1) * urls.length + currentUrlIndex;
-            const progress = (currentStep / totalSteps) * 100;
-            progressFill.style.width = `${progress}%`;
-            progressStats.textContent = `循环: ${currentLoop}/${totalLoops} | URL: ${currentUrlIndex + 1}/${urls.length}`;
-        }
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>心灵驿站</h3>
+                    <p>陪伴你探索内心世界的温暖港湾</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="test.html">心理测试</a></li>
+                        <li><a href="news.html">资讯</a></li>
+                        <li><a href="treehole.html">情绪树洞</a></li>
+                        <li><a href="games.html">小游戏</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 心灵驿站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
 
-        async function sleep(seconds) {
-            for (let i = seconds; i > 0; i--) {
-                if (!isRunning) break;
-                await new Promise(resolve => setTimeout(resolve, 1000));
-            }
-        }
-
-        let openedWindow = null;
-        let currentUrlIndex = 0;
-
-        function openUrlInNewTab(url) {
-            try {
-                // 关闭之前打开的窗口（可选）
-                if (openedWindow && !openedWindow.closed) {
-                    openedWindow.close();
-                }
-                // 打开新标签页
-                openedWindow = window.open(url, '_blank');
-                if (openedWindow) {
-                    return { success: true, status: '成功打开新标签页' };
-                } else {
-                    return { success: false, status: '浏览器阻止了弹出窗口' };
-                }
-            } catch (error) {
-                return { success: false, status: error.message };
-            }
-        }
-
-        async function runTraversal() {
-            isRunning = true;
-            currentLoop = 0;
-            
-            startBtn.style.display = 'none';
-            stopBtn.style.display = 'inline-block';
-            progressSection.classList.add('active');
-            logContainer.innerHTML = '';
-
-            log('=== 开始URL遍历任务 ===', 'info');
-            log(`总循环次数: ${totalLoops}`, 'info');
-            log(`每个URL停留时间: ${stayTime}秒`, 'info');
-
-            for (currentLoop = 1; currentLoop <= totalLoops && isRunning; currentLoop++) {
-                log(`\n=== 第 ${currentLoop} 次循环 ===`, 'info');
-
-                for (currentUrlIndex = 0; currentUrlIndex < urls.length && isRunning; currentUrlIndex++) {
-                    const { name, url } = urls[currentUrlIndex];
-                    updateProgress();
-
-                    log(`正在访问 [${name}]: ${url}`, 'info');
-
-                    const result = openUrlInNewTab(url);
-                    if (result.success) {
-                        log(`✅ 成功打开新标签页`, 'success');
-                    } else {
-                        log(`❌ 打开失败: ${result.status}`, 'error');
-                    }
-
-                    if (isRunning) {
-                        log(`⏳ 停留 ${stayTime} 秒...`, 'warning');
-                        // 显示倒计时
-                        for (let i = stayTime; i > 0 && isRunning; i--) {
-                            log(`   剩余 ${i} 秒...`, 'info');
-                            await new Promise(resolve => setTimeout(resolve, 1000));
-                        }
-                        log(`⏭️ 停留完成，准备访问下一个URL`, 'info');
-                    }
-                }
-
-                if (isRunning) {
-                    log(`✅ 第 ${currentLoop} 次循环完成`, 'success');
-                }
-            }
-
-            if (isRunning) {
-                log('\n=== 所有循环完成 ===', 'success');
-            } else {
-                log('\n=== 遍历已停止 ===', 'warning');
-            }
-
-            isRunning = false;
-            startBtn.style.display = 'inline-block';
-            stopBtn.style.display = 'none';
-            progressFill.style.width = '100%';
-        }
-
-        startBtn.addEventListener('click', () => {
-            totalLoops = parseInt(loopCountInput.value) || 10;
-            stayTime = parseInt(stayTimeInput.value) || 4;
-            runTraversal();
-        });
-
-        stopBtn.addEventListener('click', () => {
-            isRunning = false;
-            log('⏹️ 用户请求停止', 'warning');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

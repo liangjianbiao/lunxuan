@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情绪树洞 - 心灵驿站</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cdc3263b8b8f94e1d69ded1cf092419";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>心灵驿站</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="test.html"><i class="fas fa-flask"></i> 心理测试</a></li>
+                <li><a href="news.html"><i class="fas fa-newspaper"></i> 资讯</a></li>
+                <li><a href="treehole.html" class="active"><i class="fas fa-tree"></i> 情绪树洞</a></li>
+                <li><a href="games.html"><i class="fas fa-gamepad"></i> 小游戏</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <section class="page-header treehole-header">
+        <h1>🌳 情绪树洞</h1>
+        <p>倾诉心事，温暖相伴</p>
+        <button class="write-btn" onclick="showWriteModal()">
+            <i class="fas fa-pencil-alt"></i> 写下心事
+        </button>
+    </section>
+
+    <!-- 情绪筛选 -->
+    <section class="treehole-filters">
+        <div class="container">
+            <div class="mood-filters">
+                <button class="mood-filter active" data-mood="all">全部</button>
+                <button class="mood-filter happy" data-mood="happy">😊 开心</button>
+                <button class="mood-filter sad" data-mood="sad">😢 难过</button>
+                <button class="mood-filter angry" data-mood="angry">😤 生气</button>
+                <button class="mood-filter confused" data-mood="confused">😕 迷茫</button>
+                <button class="mood-filter lonely" data-mood="lonely">🥺 孤独</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 树洞内容列表 -->
+    <section class="treehole-content">
+        <div class="container">
+            <div class="treehole-posts" id="treeholePosts">
+                <!-- 帖子1 -->
+                <div class="treehole-post" data-mood="sad">
+                    <div class="post-header">
+                        <div class="post-avatar">🌙</div>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户</span>
+                            <span class="post-time">2小时前</span>
+                            <span class="post-mood-tag">😢 难过</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>最近工作压力好大，感觉喘不过气来。每天加班到很晚，周末也得不到休息。感觉自己像一个不停旋转的陀螺，不知道这样的日子什么时候才能结束。</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="fas fa-heart"></i> <span>12</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(this)">
+                            <i class="fas fa-comment"></i> <span>3</span>
+                        </button>
+                        <button class="action-btn share-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comment">
+                            <span class="comment-author">温暖的陌生人</span>
+                            <span class="comment-text">抱抱你，辛苦了！记得照顾好自己。</span>
+                        </div>
+                        <div class="comment">
+                            <span class="comment-author">阳光使者</span>
+                            <span class="comment-text">压力大的时候要学会释放，不要把自己逼得太紧。</span>
+                        </div>
+                        <div class="comment-input">
+                            <input type="text" placeholder="写下你的安慰...">
+                            <button>发送</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 帖子2 -->
+                <div class="treehole-post" data-mood="lonely">
+                    <div class="post-header">
+                        <div class="post-avatar">⭐</div>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户</span>
+                            <span class="post-time">5小时前</span>
+                            <span class="post-mood-tag">🥺 孤独</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>今天和家人吵架了，现在很后悔。明明知道他们是关心我，但就是控制不住自己的脾气。现在一个人坐在房间里，感觉好孤独。</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="fas fa-heart"></i> <span>28</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(this)">
+                            <i class="fas fa-comment"></i> <span>8</span>
+                        </button>
+                        <button class="action-btn share-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comment">
+                            <span class="comment-author">倾听者</span>
+                            <span class="comment-text">家人之间难免会有摩擦，主动道个歉，他们会理解的。</span>
+                        </div>
+                        <div class="comment-input">
+                            <input type="text" placeholder="写下你的安慰...">
+                            <button>发送</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 帖子3 -->
+                <div class="treehole-post" data-mood="happy">
+                    <div class="post-header">
+                        <div class="post-avatar">🌈</div>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户</span>
+                            <span class="post-time">1小时前</span>
+                            <span class="post-mood-tag">😊 开心</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>今天收到了心仪公司的offer！努力了这么久终于有了回报，想和大家分享这份喜悦！</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="fas fa-heart"></i> <span>56</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(this)">
+                            <i class="fas fa-comment"></i> <span>12</span>
+                        </button>
+                        <button class="action-btn share-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comment">
+                            <span class="comment-author">恭喜你</span>
+                            <span class="comment-text">太棒了！恭喜恭喜！</span>
+                        </div>
+                        <div class="comment-input">
+                            <input type="text" placeholder="写下你的祝福...">
+                            <button>发送</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 帖子4 -->
+                <div class="treehole-post" data-mood="confused">
+                    <div class="post-header">
+                        <div class="post-avatar">🌊</div>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户</span>
+                            <span class="post-time">3小时前</span>
+                            <span class="post-mood-tag">😕 迷茫</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>毕业两年了，换了三份工作，还是不知道自己想要什么。看着身边的朋友都有了明确的方向，只有我还在原地打转，好迷茫啊...</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="fas fa-heart"></i> <span>45</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(this)">
+                            <i class="fas fa-comment"></i> <span>15</span>
+                        </button>
+                        <button class="action-btn share-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comment">
+                            <span class="comment-author">过来人</span>
+                            <span class="comment-text">慢慢来，找到方向需要时间。多尝试，总会找到适合自己的路。</span>
+                        </div>
+                        <div class="comment-input">
+                            <input type="text" placeholder="写下你的建议...">
+                            <button>发送</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 帖子5 -->
+                <div class="treehole-post" data-mood="angry">
+                    <div class="post-header">
+                        <div class="post-avatar">🔥</div>
+                        <div class="post-meta">
+                            <span class="post-author">匿名用户</span>
+                            <span class="post-time">4小时前</span>
+                            <span class="post-mood-tag">😤 生气</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p>今天在地铁上被人踩了一脚，对方连道歉都没有就走了！真的很生气，为什么有些人可以这么没素质？</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="action-btn like-btn" onclick="toggleLike(this)">
+                            <i class="fas fa-heart"></i> <span>34</span>
+                        </button>
+                        <button class="action-btn comment-btn" onclick="toggleComments(this)">
+                            <i class="fas fa-comment"></i> <span>6</span>
+                        </button>
+                        <button class="action-btn share-btn">
+                            <i class="fas fa-share"></i>
+                        </button>
+                    </div>
+                    <div class="comments-section">
+                        <div class="comment">
+                            <span class="comment-author">安慰者</span>
+                            <span class="comment-text">别生气了，不值得为这种人影响心情。深呼吸，让它过去吧。</span>
+                        </div>
+                        <div class="comment-input">
+                            <input type="text" placeholder="写下你的安慰...">
+                            <button>发送</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 写心事弹窗 -->
+    <div class="write-modal" id="writeModal">
+        <div class="modal-content write-content">
+            <div class="modal-header">
+                <h3>写下你的心事</h3>
+                <span class="close-modal" onclick="closeWriteModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="mood-selector">
+                    <span>选择你的心情：</span>
+                    <div class="mood-options">
+                        <button class="mood-option" data-mood="happy">😊 开心</button>
+                        <button class="mood-option" data-mood="sad">😢 难过</button>
+                        <button class="mood-option" data-mood="angry">😤 生气</button>
+                        <button class="mood-option" data-mood="confused">😕 迷茫</button>
+                        <button class="mood-option" data-mood="lonely">🥺 孤独</button>
+                    </div>
+                </div>
+                <textarea placeholder="在这里写下你的心事，这里是安全的树洞..." rows="8"></textarea>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeWriteModal()">取消</button>
+                <button class="btn btn-primary" onclick="submitPost()">发布</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>心灵驿站</h3>
+                    <p>陪伴你探索内心世界的温暖港湾</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="test.html">心理测试</a></li>
+                        <li><a href="news.html">资讯</a></li>
+                        <li><a href="treehole.html">情绪树洞</a></li>
+                        <li><a href="games.html">小游戏</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 心灵驿站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

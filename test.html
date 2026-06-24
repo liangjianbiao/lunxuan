@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>心理测试 - 心灵驿站</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cdc3263b8b8f94e1d69ded1cf092419";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>心灵驿站</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="test.html" class="active"><i class="fas fa-flask"></i> 心理测试</a></li>
+                <li><a href="news.html"><i class="fas fa-newspaper"></i> 资讯</a></li>
+                <li><a href="treehole.html"><i class="fas fa-tree"></i> 情绪树洞</a></li>
+                <li><a href="games.html"><i class="fas fa-gamepad"></i> 小游戏</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <h1>心理测试</h1>
+        <p>探索你的内心世界</p>
+    </section>
+
+    <!-- 测试分类 -->
+    <section class="test-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">全部</button>
+                <button class="category-tab" data-category="personality">性格测试</button>
+                <button class="category-tab" data-category="emotion">情感测试</button>
+                <button class="category-tab" data-category="career">职业测试</button>
+                <button class="category-tab" data-category="fun">趣味测试</button>
+            </div>
+
+            <!-- 测试列表 -->
+            <div class="tests-list">
+                <!-- MBTI测试 -->
+                <div class="test-item" id="mbti" data-category="personality">
+                    <div class="test-icon mbti-icon"><i class="fas fa-brain"></i></div>
+                    <div class="test-info">
+                        <h3>MBTI性格测试</h3>
+                        <p>通过经典的MBTI理论，探索你的人格类型，了解自己的性格特点和行为模式。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 12,345人已测</span>
+                            <span><i class="fas fa-clock"></i> 15分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('mbti')">开始测试</button>
+                </div>
+
+                <!-- 九型人格测试 -->
+                <div class="test-item" id="enneagram" data-category="personality">
+                    <div class="test-icon enneagram-icon"><i class="fas fa-star"></i></div>
+                    <div class="test-info">
+                        <h3>九型人格测试</h3>
+                        <p>探索你的九型人格类型，了解你的核心动机和成长路径。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 8,765人已测</span>
+                            <span><i class="fas fa-clock"></i> 12分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('enneagram')">开始测试</button>
+                </div>
+
+                <!-- 爱情匹配度测试 -->
+                <div class="test-item" id="love" data-category="emotion">
+                    <div class="test-icon love-icon"><i class="fas fa-heart"></i></div>
+                    <div class="test-info">
+                        <h3>爱情匹配度测试</h3>
+                        <p>了解你的恋爱风格和爱情观，找到最适合你的伴侣类型。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 6,543人已测</span>
+                            <span><i class="fas fa-clock"></i> 10分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('love')">开始测试</button>
+                </div>
+
+                <!-- 职业性格测试 -->
+                <div class="test-item" id="career" data-category="career">
+                    <div class="test-icon career-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="test-info">
+                        <h3>职业性格测试</h3>
+                        <p>发现你的职业优势和偏好，找到最适合你的职业发展方向。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 5,432人已测</span>
+                            <span><i class="fas fa-clock"></i> 18分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('career')">开始测试</button>
+                </div>
+
+                <!-- 情商测试 -->
+                <div class="test-item" id="eq" data-category="emotion">
+                    <div class="test-icon eq-icon"><i class="fas fa-smile"></i></div>
+                    <div class="test-info">
+                        <h3>情商测试</h3>
+                        <p>评估你的情绪智力水平，了解自己在情绪管理和人际关系方面的能力。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 4,321人已测</span>
+                            <span><i class="fas fa-clock"></i> 8分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('eq')">开始测试</button>
+                </div>
+
+                <!-- 色彩心理测试 -->
+                <div class="test-item" id="color" data-category="fun">
+                    <div class="test-icon color-icon"><i class="fas fa-palette"></i></div>
+                    <div class="test-info">
+                        <h3>色彩心理测试</h3>
+                        <p>通过你对颜色的偏好，揭示你的性格特点和内心需求。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 3,210人已测</span>
+                            <span><i class="fas fa-clock"></i> 5分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('color')">开始测试</button>
+                </div>
+
+                <!-- 梦境解析测试 -->
+                <div class="test-item" id="dream" data-category="fun">
+                    <div class="test-icon dream-icon"><i class="fas fa-moon"></i></div>
+                    <div class="test-info">
+                        <h3>梦境解析测试</h3>
+                        <p>探索你的梦境象征，了解潜意识传递的信息。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 2,109人已测</span>
+                            <span><i class="fas fa-clock"></i> 6分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('dream')">开始测试</button>
+                </div>
+
+                <!-- 压力测试 -->
+                <div class="test-item" id="stress" data-category="emotion">
+                    <div class="test-icon stress-icon"><i class="fas fa-cloud"></i></div>
+                    <div class="test-info">
+                        <h3>压力水平测试</h3>
+                        <p>评估你的当前压力水平，获取专业的减压建议。</p>
+                        <div class="test-meta">
+                            <span><i class="fas fa-users"></i> 7,890人已测</span>
+                            <span><i class="fas fa-clock"></i> 7分钟</span>
+                        </div>
+                    </div>
+                    <button class="start-test-btn" onclick="startTest('stress')">开始测试</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 测试进行中弹窗 -->
+    <div class="test-modal" id="testModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="testTitle">测试进行中</h3>
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="question-container">
+                    <div class="question-number" id="questionNumber">1/10</div>
+                    <div class="question-text" id="questionText">这是一个测试问题？</div>
+                    <div class="options-container" id="optionsContainer"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="prevQuestion()">上一题</button>
+                <button class="btn btn-primary" onclick="nextQuestion()">下一题</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 测试结果弹窗 -->
+    <div class="result-modal" id="resultModal">
+        <div class="modal-content result-content">
+            <div class="result-header">
+                <h3>测试完成！</h3>
+                <div class="result-type" id="resultType">你的类型</div>
+            </div>
+            <div class="result-body">
+                <div class="result-description" id="resultDescription"></div>
+                <div class="result-traits">
+                    <h4>性格特点</h4>
+                    <ul id="traitsList"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeResultModal()">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>心灵驿站</h3>
+                    <p>陪伴你探索内心世界的温暖港湾</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="test.html">心理测试</a></li>
+                        <li><a href="news.html">资讯</a></li>
+                        <li><a href="treehole.html">情绪树洞</a></li>
+                        <li><a href="games.html">小游戏</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 心灵驿站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

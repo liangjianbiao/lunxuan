@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小游戏 - 心灵驿站</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cdc3263b8b8f94e1d69ded1cf092419";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>心灵驿站</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="test.html"><i class="fas fa-flask"></i> 心理测试</a></li>
+                <li><a href="news.html"><i class="fas fa-newspaper"></i> 资讯</a></li>
+                <li><a href="treehole.html"><i class="fas fa-tree"></i> 情绪树洞</a></li>
+                <li><a href="games.html" class="active"><i class="fas fa-gamepad"></i> 小游戏</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <section class="page-header games-header">
+        <h1>🎮 益智小游戏</h1>
+        <p>放松心情，锻炼大脑</p>
+    </section>
+
+    <!-- 游戏分类 -->
+    <section class="games-categories">
+        <div class="container">
+            <div class="category-tabs">
+                <button class="category-tab active" data-category="all">全部游戏</button>
+                <button class="category-tab" data-category="puzzle">益智类</button>
+                <button class="category-tab" data-category="logic">逻辑类</button>
+                <button class="category-tab" data-category="relax">休闲类</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏列表 -->
+    <section class="games-list">
+        <div class="container">
+            <div class="games-grid">
+                <!-- 连线小游戏 -->
+                <div class="game-card" data-category="puzzle" onclick="openGame('连线小游戏')">
+                    <div class="game-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>连线小游戏</h3>
+                        <p>用线条连接相同颜色的点，锻炼逻辑思维能力</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-play"></i> 已玩 1,234 次</span>
+                        </div>
+                    </div>
+                    <button class="play-btn">
+                        <i class="fas fa-play"></i> 开始游戏
+                    </button>
+                </div>
+
+                <!-- 拼图小游戏 -->
+                <div class="game-card" data-category="puzzle" onclick="openGame('拼图')">
+                    <div class="game-icon">
+                        <i class="fas fa-puzzle-piece"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>拼图小游戏</h3>
+                        <p>将打乱的图片重新拼合，锻炼空间想象力</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-play"></i> 已玩 2,345 次</span>
+                        </div>
+                    </div>
+                    <button class="play-btn">
+                        <i class="fas fa-play"></i> 开始游戏
+                    </button>
+                </div>
+
+                <!-- 推箱子游戏 -->
+                <div class="game-card" data-category="logic" onclick="openGame('推箱子游戏')">
+                    <div class="game-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>推箱子游戏</h3>
+                        <p>将箱子推到指定位置，考验策略思维</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-play"></i> 已玩 1,876 次</span>
+                        </div>
+                    </div>
+                    <button class="play-btn">
+                        <i class="fas fa-play"></i> 开始游戏
+                    </button>
+                </div>
+
+                <!-- 九格人格测试游戏 -->
+                <div class="game-card" data-category="relax" onclick="openGame('九格人格')">
+                    <div class="game-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>九格人格</h3>
+                        <p>通过九宫格了解你的性格特点</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-play"></i> 已玩 987 次</span>
+                        </div>
+                    </div>
+                    <button class="play-btn">
+                        <i class="fas fa-play"></i> 开始体验
+                    </button>
+                </div>
+
+                <!-- 星屿微光 -->
+                <div class="game-card" data-category="relax" onclick="openGame('星屿微光')">
+                    <div class="game-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>星屿微光</h3>
+                        <p>放松心情的治愈系小游戏</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-play"></i> 已玩 1,567 次</span>
+                        </div>
+                    </div>
+                    <button class="play-btn">
+                        <i class="fas fa-play"></i> 开始体验
+                    </button>
+                </div>
+
+                <!-- 记忆翻牌游戏 -->
+                <div class="game-card" data-category="puzzle" onclick="openMemoryGame()">
+                    <div class="game-icon">
+                        <i class="fas fa-memory"></i>
+                    </div>
+                    <div class="game-info">
+                        <h3>记忆翻牌</h3>
+                        <p>翻开卡片，找出相同的配对</p>
+                        <div class="game-stats">
+                            <span><i class="fas fa-play"></i> 即将上线</span>
+                        </div>
+                    </div>
+                    <button class="play-btn disabled">
+                        <i class="fas fa-lock"></i> 敬请期待
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 游戏统计 -->
+    <section class="games-stats">
+        <div class="container">
+            <h2>游戏数据统计</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-number">6</p>
+                        <p class="stat-label">游戏数量</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-number">8,999+</p>
+                        <p class="stat-label">总游玩次数</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-clock"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-number">10,000+</p>
+                        <p class="stat-label">总游戏时长(分钟)</p>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-icon"><i class="fas fa-trophy"></i></div>
+                    <div class="stat-info">
+                        <p class="stat-number">1,234</p>
+                        <p class="stat-label">成就解锁</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>心灵驿站</h3>
+                    <p>陪伴你探索内心世界的温暖港湾</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="test.html">心理测试</a></li>
+                        <li><a href="news.html">资讯</a></li>
+                        <li><a href="treehole.html">情绪树洞</a></li>
+                        <li><a href="games.html">小游戏</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 心灵驿站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

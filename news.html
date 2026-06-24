@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资讯 - 心灵驿站</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5cdc3263b8b8f94e1d69ded1cf092419";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heart"></i>
+                <span>心灵驿站</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> 首页</a></li>
+                <li><a href="test.html"><i class="fas fa-flask"></i> 心理测试</a></li>
+                <li><a href="news.html" class="active"><i class="fas fa-newspaper"></i> 资讯</a></li>
+                <li><a href="treehole.html"><i class="fas fa-tree"></i> 情绪树洞</a></li>
+                <li><a href="games.html"><i class="fas fa-gamepad"></i> 小游戏</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 页面标题 -->
+    <section class="page-header">
+        <h1>心理资讯</h1>
+        <p>获取最新的心理健康知识和热点信息</p>
+    </section>
+
+    <!-- 搜索和分类 -->
+    <section class="news-filters">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="搜索资讯..." id="newsSearch">
+                <button class="search-btn">搜索</button>
+            </div>
+            <div class="news-categories">
+                <button class="news-category active" data-category="all">全部</button>
+                <button class="news-category" data-category="mental">心理健康</button>
+                <button class="news-category" data-category="psychology">心理学</button>
+                <button class="news-category" data-category="relationship">情感关系</button>
+                <button class="news-category" data-category="life">生活方式</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 热点资讯 -->
+    <section class="hot-news">
+        <div class="container">
+            <h2>🔥 热点资讯</h2>
+            <div class="hot-news-grid">
+                <div class="hot-news-card featured" data-category="mental">
+                    <div class="hot-news-image hot1-bg"></div>
+                    <div class="hot-news-content">
+                        <span class="news-tag">心理健康</span>
+                        <h3>如何缓解职场压力：专家给出5个实用建议</h3>
+                        <p>职场压力已成为现代人普遍面临的问题，长期处于高压状态会对身心健康造成严重影响...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 12,345</span>
+                            <span><i class="fas fa-heart"></i> 890</span>
+                            <span><i class="fas fa-comment"></i> 156</span>
+                            <span>2026-06-23</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hot-news-card" data-category="psychology">
+                    <div class="hot-news-image hot2-bg"></div>
+                    <div class="hot-news-content">
+                        <span class="news-tag">心理学</span>
+                        <h3>正念冥想的科学益处：改变大脑结构</h3>
+                        <p>越来越多的研究证明冥想对身心健康有益...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 8,765</span>
+                            <span><i class="fas fa-heart"></i> 654</span>
+                            <span><i class="fas fa-comment"></i> 89</span>
+                            <span>2026-06-22</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hot-news-card" data-category="relationship">
+                    <div class="hot-news-image hot3-bg"></div>
+                    <div class="hot-news-content">
+                        <span class="news-tag">情感关系</span>
+                        <h3>建立健康的人际关系：沟通是关键</h3>
+                        <p>良好的人际关系是幸福生活的基石...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 6,543</span>
+                            <span><i class="fas fa-heart"></i> 432</span>
+                            <span><i class="fas fa-comment"></i> 67</span>
+                            <span>2026-06-21</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 资讯列表 -->
+    <section class="news-list">
+        <div class="container">
+            <h2>📚 最新资讯</h2>
+            <div class="news-cards">
+                <div class="news-item" data-category="mental">
+                    <div class="news-item-image news1-bg"></div>
+                    <div class="news-item-content">
+                        <span class="news-tag">心理健康</span>
+                        <h3>焦虑症的常见症状及应对方法</h3>
+                        <p>焦虑症是一种常见的心理障碍，了解其症状和应对方法对于及时干预至关重要...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 5,432</span>
+                            <span><i class="fas fa-heart"></i> 321</span>
+                            <span>2026-06-20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-item" data-category="psychology">
+                    <div class="news-item-image news2-bg"></div>
+                    <div class="news-item-content">
+                        <span class="news-tag">心理学</span>
+                        <h3>认知行为疗法：改变思维模式的有效工具</h3>
+                        <p>认知行为疗法是一种经过验证的心理治疗方法，帮助人们识别和改变负面思维模式...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 4,321</span>
+                            <span><i class="fas fa-heart"></i> 234</span>
+                            <span>2026-06-19</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-item" data-category="relationship">
+                    <div class="news-item-image news3-bg"></div>
+                    <div class="news-item-content">
+                        <span class="news-tag">情感关系</span>
+                        <h3>如何处理恋爱中的矛盾与冲突</h3>
+                        <p>恋爱关系中难免会出现矛盾，学会正确处理冲突是维持健康关系的关键...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 3,210</span>
+                            <span><i class="fas fa-heart"></i> 189</span>
+                            <span>2026-06-18</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-item" data-category="life">
+                    <div class="news-item-image news4-bg"></div>
+                    <div class="news-item-content">
+                        <span class="news-tag">生活方式</span>
+                        <h3>打造心理健康的生活习惯</h3>
+                        <p>良好的生活习惯对心理健康至关重要，从日常小事做起，培养积极健康的生活方式...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 2,109</span>
+                            <span><i class="fas fa-heart"></i> 156</span>
+                            <span>2026-06-17</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-item" data-category="mental">
+                    <div class="news-item-image news5-bg"></div>
+                    <div class="news-item-content">
+                        <span class="news-tag">心理健康</span>
+                        <h3>抑郁症的早期识别与预防</h3>
+                        <p>抑郁症是一种严重的心理疾病，但早期识别和干预可以显著提高康复率...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 7,890</span>
+                            <span><i class="fas fa-heart"></i> 567</span>
+                            <span>2026-06-16</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-item" data-category="psychology">
+                    <div class="news-item-image news6-bg"></div>
+                    <div class="news-item-content">
+                        <span class="news-tag">心理学</span>
+                        <h3>积极心理学：培养乐观心态的技巧</h3>
+                        <p>积极心理学研究如何培养积极情绪和乐观心态，帮助人们更好地应对生活挑战...</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-eye"></i> 6,789</span>
+                            <span><i class="fas fa-heart"></i> 445</span>
+                            <span>2026-06-15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>心灵驿站</h3>
+                    <p>陪伴你探索内心世界的温暖港湾</p>
+                </div>
+                <div class="footer-section">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="index.html">首页</a></li>
+                        <li><a href="test.html">心理测试</a></li>
+                        <li><a href="news.html">资讯</a></li>
+                        <li><a href="treehole.html">情绪树洞</a></li>
+                        <li><a href="games.html">小游戏</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>关注我们</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-weixin"></i></a>
+                        <a href="#"><i class="fab fa-weibo"></i></a>
+                        <a href="#"><i class="fab fa-qq"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 心灵驿站. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
